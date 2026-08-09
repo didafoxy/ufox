@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Video</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+#startScreen{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+    z-index:10;
+}
+
+#startBtn{
+    padding:18px 45px;
+    font-size:30px;
+    font-weight:bold;
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ffb6d9,#ff69b4);
+    box-shadow:0 0 30px rgba(255,105,180,.7);
+    transition:.25s;
+}
+
+#startBtn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 45px rgba(255,105,180,1);
+}
+
+#startBtn:active{
+    transform:scale(.96);
+}
+
+#container{
+    display:none;
+    width:956px;
+    height:466px;
+}
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#000;
+    outline:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+    <button id="startBtn">💗 Click Me 💗</button>
+</div>
+
+<div id="container">
+    <video id="video" loop playsinline>
+        <source src="ohmy.mp4.mp4" type="video/mp4">
+        Your browser doesn't support HTML5 video.
+    </video>
+</div>
+
+<script>
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const container = document.getElementById("container");
+const video = document.getElementById("video");
+
+startBtn.addEventListener("click", async () => {
+    startScreen.style.display = "none";
+    container.style.display = "block";
+
+    try {
+        await video.play();
+    } catch (e) {
+        console.log(e);
+    }
+});
+</script>
+
+</body>
+</html>
